@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# created by giggio in 05/12/2017
+
 import os
 from os.path import join, dirname, realpath
 from flask import (url_for, flash, redirect, render_template,
@@ -59,4 +61,4 @@ def handle_fa(filename):
         proteina = rna.translate()
         print('Sequência de DNA : %s' % rna )
         print('Proteina: %s' % proteina)
-    return render_template('proteina.html', proteina=proteina)
+    return render_template('proteina.html', proteina=proteina, dnaSequence=rna)
