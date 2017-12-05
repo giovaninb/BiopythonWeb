@@ -1,5 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
-from flask import (url_for, redirect, render_template,
+from os.path import join, dirname, realpath
+from flask import (url_for, flash, redirect, render_template,
                    request, send_from_directory)
 from werkzeug import secure_filename
 from Bio import SeqIO
@@ -7,9 +11,10 @@ from Bio.Alphabet import IUPAC
 from Bio.Seq import Seq
 from app import app
 
-UPLOAD_FOLDER = 'app/uploads'
+UPLOAD_FOLDER = '/home/giovani/BiopythonWeb/app/uploads'
+
 ALLOWED_EXTENSIONS = set(
-    ['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'fasta']
+    ['txt', 'pdf', 'fasta']
 )
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -24,16 +29,6 @@ def index():
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-def handle_fa(filename):
-    fa = SeqIO.parse(filename, 'fasta')
-    for i in fa:
-        dna = str(i.seq)
-        rna = Seq(dna, IUPAC.unambiguous_dna)
-        proteina = rna.translate()
-        print('Sequência de DNA : %s' % rna )
-        print('Proteina: %s' % proteina)
-    return render_template('proteina.html', proteina=proteina)
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
@@ -55,3 +50,13 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return handle_fa(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     return render_template('index.html')
+
+def handle_fa(filename):
+    fa = SeqIO.parse(filename, 'fasta')
+    for i in fa:
+        dna = str(i.seq)
+        rna = Seq(dna, IUPAC.unambiguous_dna)
+        proteina = rna.translate()
+        print('Sequência de DNA : %s' % rna )
+        print('Proteina: %s' % proteina)
+    return render_template('proteina.html', proteina=proteina)
