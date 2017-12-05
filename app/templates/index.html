@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="jumbotron">
+
+  <p> Uma soma perfeita de um microframework muito poderoso chamado Flask e a ferramenta livremente disponível para uso da biologia molecular computacional.</p>
+  <br>
+  <p>Upload do arquivo .fasta</p>
+    <form method=post enctype=multipart/form-data>
+
+        <button type="button" class="btn btn-primary btn-lg active">
+          <input  type="file" name=file></input>
+        </button>
+        <input class="btn btn-success btn-lg active" role="button" type=submit value=Upload>
+   </form>
+</div>
+{% endblock %}
