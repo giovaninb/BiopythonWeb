@@ -3,11 +3,12 @@
 {% block content %}
 <div class="jumbotron">
 
+
   <p>Projeto final apresentado para a profa. Dra. Ana Winck, na disciplina de Banco de Dados para a Área Biomédica, 2017/2.</p>
   <p> A junção de uma ferramenta livre de Biologia Molecular Computacional, denominada Biopython e um poderoso framework web chamado Flask.</p>
 
-  <h3>Contribuidores:</h3>
- <div class="list-group">
+  <h2>Contribuidores:</h2>
+  <div class="list-group">
    <a href="#" class="list-group-item">
      <h4 class="list-group-item-heading">Gabriel Leal: gabrielle@ufcspa.edu.br</h4>
    </a>
@@ -17,10 +18,9 @@
    <a href="#" class="list-group-item">
      <h4 class="list-group-item-heading">Marília Rosa: mariliarosilva@gmail.com</h4>
    </a>
- </div>
+  </div>
 
-  <h2>Informações sobre a sequência .fasta: </h2>
-
+  <h1>Alinhamento local: </h1>
   <br>
   <p>Upload dos arquivos .fasta</p>
     <form method=post enctype=multipart/form-data>
@@ -29,6 +29,9 @@
           <input  type="file" name=file></input>
         </button>
 
+        <button type="button" class="btn btn-primary btn-lg active">
+          <input  type="file" name=file></input>
+        </button>
         <input class="btn btn-secondary btn-success btn-lg active" role="button" type=submit value=Upload>
    </form>
 </div>

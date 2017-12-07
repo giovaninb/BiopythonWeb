@@ -13,20 +13,21 @@ from Bio.Alphabet import IUPAC
 from Bio.Seq import Seq
 from app import app
 
+# TODO Alterar para o diretório onde foi feito o download do projeto
+# UPLOAD_FOLDER = os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'/uploads'
 UPLOAD_FOLDER = '/home/giovani/BiopythonWeb/app/uploads'
 
+
 ALLOWED_EXTENSIONS = set(
-    ['txt', 'pdf', 'fasta']
+    ['fasta']
 )
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 
 @app.route("/index")
 @app.route("/")
 def index():
     return render_template('index.html')
-
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -35,7 +36,6 @@ def allowed_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
-
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
